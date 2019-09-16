@@ -1,5 +1,5 @@
 class Api::ProductsController < ApplicationController
-
+  before_action :authenticate_admin, only: [:create, :update, :destroy]
   def index
     search_term = params[:search]
     discount_option = params[:discount]
@@ -39,7 +39,8 @@ class Api::ProductsController < ApplicationController
                           name: params[:name],
                           price: params[:price],
                           image_url: params[:image_url],
-                          description: params[:description]
+                          description: params[:description],
+                          supplier_id: params[:supplier_id]
                           )
     if @product.save
       render 'show.json.jb'

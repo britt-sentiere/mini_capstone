@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
   belongs_to :supplier
   has_many :images
+  has_many :orders
+
   
   validates :name, presence: true
   validates :name, uniqueness: true
@@ -8,7 +10,6 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
   validates :description, length: { maximum: 500, minimum: 10  } # { in: 10..500 } could also work
   validates :description, presence: true
-  validates :image_url, presence: true
 
   
 
