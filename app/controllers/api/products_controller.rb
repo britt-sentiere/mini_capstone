@@ -5,9 +5,17 @@ class Api::ProductsController < ApplicationController
     discount_option = params[:discount]
     sort_attribute = params[:sort]
     sort_order = params[:sort_order]
+    category_preference = params[:category]
     discount_level = 3
 
+
+    if category_preference
+      #category code
+      category = Category.find_by(name: category_preference)
+      @products = category.products
+    else
     @products = Product.all
+    end 
 
     
 

@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   has_many :images
   has_many :orders
   has_many :product_categories
+  has_many :categories, through: :product_categories
 
   
   validates :name, presence: true
@@ -17,6 +18,10 @@ class Product < ApplicationRecord
   def is_discounted?
     price < 3
   end 
+
+  def category_names
+    categories.map { |category| category.name }
+  end
 
   def tax
     price * 0.09
