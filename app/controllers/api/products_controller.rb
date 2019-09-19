@@ -43,7 +43,6 @@ class Api::ProductsController < ApplicationController
 
    def create
     @product = Product.new(
-                          id: params[:id],
                           name: params[:name],
                           price: params[:price],
                           image_url: params[:image_url],
